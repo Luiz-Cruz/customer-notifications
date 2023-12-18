@@ -1,0 +1,64 @@
+version: '3.9'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    depends_on:
+      - mongodb
+      - rabbitmq
+      - nginx
+
+  nginx:
+    image: nginx:1.25-alpine
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+
+  mongodb:
+    image: mongo:4.2.3-bionic
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_DATABASE=cronos
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
+      - MONGO_URI="mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/"
+    volumes:
+      - ./db/seed.js:/docker-entrypoint-initdb.d/seed.js:ro
+      - mongodb_data:/data/db
+
+  mongo-express:
+    image: mongo-express:1-20-alpine3.18
+    ports:
+      - "8081:8081"
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=${ME_CONFIG_MONGODB_ADMINUSERNAME}
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=${ME_CONFIG_MONGODB_ADMINPASSWORD}
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+      - ME_CONFIG_MONGODB_ENABLE_ADMIN=true
+      - ME_CONFIG_BASICAUTH_USERNAME=${ME_CONFIG_BASICAUTH_USERNAME}
+      - ME_CONFIG_BASICAUTH_PASSWORD=${ME_CONFIG_BASICAUTH_PASSWORD}
+    depends_on:
+      - mongodb
+
+  rabbitmq:
+    image: rabbitmq:3.10-alpine
+    container_name: rabbitmq
+    restart: always
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+      - RABBITMQ_DEFAULT_VHOST=/
+    ports:
+      - 15672:15672
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+  
+volumes:
+  mongodb_data: 
+  rabbitmq_data:
