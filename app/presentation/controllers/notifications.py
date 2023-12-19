@@ -1,9 +1,9 @@
 from flask import Response, Blueprint, jsonify
 from loguru import logger
 
-from presentation.models.notifications_body import NotificationsBody
-from presentation.schemas.notifications import NotificationsSchema
-from presentation.validation.notificationsValidation import validate_notifications_request
+from app.presentation.models.notifications_body import NotificationsBody
+from app.presentation.schemas.notifications import NotificationsSchema
+from app.presentation.validation.notification_validator import validate_notifications_request
 
 
 notifications_router = Blueprint("notifications_router", __name__)
