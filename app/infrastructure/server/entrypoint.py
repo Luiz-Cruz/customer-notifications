@@ -1,6 +1,6 @@
 from flask import Flask
 
-from infrastructure.server import url_mapping
+from app.infrastructure.server import url_mapping
 
 
 def start():
