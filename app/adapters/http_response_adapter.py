@@ -2,7 +2,7 @@ import json
 
 from flask import Response
 
-from app.domain.http.status_code import HttpStatusCode
+from domain.http.status_code import HttpStatusCode
 
 
 def respond_created_successfully() -> Response:
