@@ -1,4 +1,4 @@
-from infrastructure.server import entrypoint
+from app.infrastructure.server import entrypoint
 
 app = entrypoint.start()
 
