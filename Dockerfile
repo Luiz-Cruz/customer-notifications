@@ -11,8 +11,12 @@ COPY pyproject.toml poetry.lock ./
 RUN poetry config virtualenvs.create false \
     && poetry install --no-dev --no-interaction --no-ansi
 
-COPY app /app
+COPY . /app
 
-EXPOSE 5000
+
+ENV FLASK_APP=app
+
+
+EXPOSE 8000
 
 CMD ["python", "app.py"]
