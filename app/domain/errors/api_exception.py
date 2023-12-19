@@ -3,9 +3,8 @@ class ApiException(Exception):
     API exceptions class to handle api exceptions in the application.
     """
 
-    def __init__(self, response_code: int, key: str, message: str):
+    def __init__(self, response_code: int, message: str):
         self.response_code = response_code
-        self.key = key
         self.message = message
 
     def get_response_code(self):
@@ -25,12 +24,3 @@ class ApiException(Exception):
             str: Message
         """
         return self.message
-
-    def get_key(self):
-        """
-        Get key
-
-        Returns:
-            str: Key
-        """
-        return self.key
