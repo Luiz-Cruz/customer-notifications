@@ -4,6 +4,16 @@ db.createCollection('users');
 db.createCollection('notifications');
 db.users.createIndex({ email: 1 }, { unique: true });
 
+db.notifications.insertMany([
+    {
+        "user_id": "e2b3zzz8-4d453-1281-a64a-8f20b9dcd44a",
+        "message": "Promotion",
+    },
+    {
+        "user_id": "99e3zzz8-4zza6-1284-a65a-8f20b9dcdzbca",
+        "message": "Lorem Ipsum",
+    }
+]);
 
 db.users.insertMany([
     {
@@ -27,87 +37,87 @@ db.users.insertMany([
         "opt_out": true
     },
     {
-        "_id": "b1a2c3d4-e5f6-4a9b-8c7d-1e2f3a4b5c6d",
+        "_id": "b1a2c3d4-e5f6-4a9b-8c7d-1e2f3a4b5c6e",
         "email": "alexander_t@icloud.com",
         "opt_out": false
     },
     {
-        "_id": "c1b2a3d4-e5f6-4a9b-8c7d-1e2f3a4b5c6d",
+        "_id": "c1b2a3d4-e5f6-4a9b-8c7d-1e2f3a4b5c6f",
         "email": "laurabrown@live.com",
         "opt_out": true
     },
     {
-        "_id": "d1e2f3a4-b5c6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "d1e2f3a4-b5c6-4d9a-8b7c-1e2f3a4b5c6g",
         "email": "samwilliams@protonmail.com",
         "opt_out": false
     },
     {
-        "_id": "e1d2c3b4-a5f6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "e1d2c3b4-a5f6-4d9a-8b7c-1e2f3a4b5c6h",
         "email": "olivia_jones@yandex.com",
         "opt_out": false
     },
     {
-        "_id": "f1e2d3c4-b5a6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "f1e2d3c4-b5a6-4d9a-8b7c-1e2f3a4b5c6i",
         "email": "chris.miller@uol.com",
         "opt_out": true
     },
     {
-        "_id": "a1b2c3d4-e5f6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "a1b2c3d4-e5f6-4d9a-8b7c-1e2f3a4b5c6j",
         "email": "emily_white@inbox.com",
         "opt_out": false
     },
     {
-        "_id": "b1c2d3e4-f5a6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "b1c2d3e4-f5a6-4d9a-8b7c-1e2f3a4b5c6k",
         "email": "davidbrown@zoho.com",
         "opt_out": false
     },
     {
-        "_id": "c1b2a3d4-e5f6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "c1b2a3d4-e5f6-4d9a-8b7c-1e2f3a4b5c6l",
         "email": "sarah.garcia@protonmail.com",
         "opt_out": true
     },
     {
-        "_id": "d1e2f3a4-b5c6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "d1e2f3a4-b5c6-4d9a-8b7c-1e2f3a4b5c6m",
         "email": "jonathansmith@icloud.com",
         "opt_out": false
     },
     {
-        "_id": "e1d2c3b4-a5f6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "e1d2c3b4-a5f6-4d9a-8b7c-1e2f3a4b5c6n",
         "email": "isabella.green@yahoo.com",
         "opt_out": false
     },
     {
-        "_id": "f1e2d3c4-b5a6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "f1e2d3c4-b5a6-4d9a-8b7c-1e2f3a4b5c6o",
         "email": "michaeljohnson@outlook.com",
         "opt_out": true
     },
     {
-        "_id": "a1b2c3d4-e5f6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "a1b2c3d4-e5f6-4d9a-8b7c-1e2f3a4b5c6p",
         "email": "sophia_wilson@gmail.com",
         "opt_out": false
     },
     {
-        "_id": "b1c2d3e4-f5a6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "b1c2d3e4-f5a6-4d9a-8b7c-1e2f3a4b5c6q",
         "email": "lucasanderson@hotmail.com",
         "opt_out": false
     },
     {
-        "_id": "c1b2a3d4-e5f6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "c1b2a3d4-e5f6-4d9a-8b7c-1e2f3a4b5c6r",
         "email": "madison_carter@live.com",
         "opt_out": true
     },
     {
-        "_id": "d1e2f3a4-b5c6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "d1e2f3a4-b5c6-4d9a-8b7c-1e2f3a4b5c6s",
         "email": "nathanthompson@yandex.com",
         "opt_out": false
     },
     {
-        "_id": "e1d2c3b4-a5f6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "e1d2c3b4-a5f6-4d9a-8b7c-1e2f3a4b5c6t",
         "email": "ava_harris@aol.com",
         "opt_out": false
     },
     {
-        "_id": "f1e2d3c4-b5a6-4d9a-8b7c-1e2f3a4b5c6d",
+        "_id": "f1e2d3c4-b5a6-4d9a-8b7c-1e2f3a4b5c6u",
         "email": "jacobwilson@inbox.com",
         "opt_out": true
     }

@@ -4,5 +4,4 @@ from app.domain.errors.api_exception import ApiException
 
 class BadRequest(ApiException):
     def __init__(self, error_msg: str):
-        key = 'ex.generic.bad-request'
-        super().__init__(HttpStatusCode.BAD_REQUEST, key, error_msg)
+        super().__init__(error_msg, HttpStatusCode.BAD_REQUEST)

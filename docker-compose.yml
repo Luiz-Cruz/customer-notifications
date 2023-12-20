@@ -6,12 +6,16 @@ services:
       context: .
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "8000:8000"
     depends_on:
       - mongodb
       - rabbitmq
       - nginx
-
+    environment:
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL} 
+      - MONGO_URI=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/
+      - MONGO_DB=${MONGO_DB}
+      - TIMEZONE=${TIMEZONE}
   nginx:
     image: nginx:1.25-alpine
     ports:
@@ -24,10 +28,8 @@ services:
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_DATABASE=cronos
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-      - MONGO_URI="mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/"
     volumes:
       - ./db/seed.js:/docker-entrypoint-initdb.d/seed.js:ro
       - mongodb_data:/data/db
@@ -47,7 +49,7 @@ services:
       - mongodb
 
   rabbitmq:
-    image: rabbitmq:3.10-alpine
+    image: rabbitmq:management
     container_name: rabbitmq
     restart: always
     environment:
@@ -55,10 +57,22 @@ services:
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
       - RABBITMQ_DEFAULT_VHOST=/
     ports:
+      - 5672:5672
       - 15672:15672
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-  
+
+  celery-worker:
+    build:
+      context: .
+    restart: always
+    environment:
+      - CELERY_BROKER_URL=amqp://admin:admin@rabbitmq:5672
+      - MONGO_DB={MONGO_DB}
+    command: celery -A app.adapters.queue.celery_consumer worker --loglevel=info 
+    depends_on:
+      - rabbitmq
+ 
 volumes:
   mongodb_data: 
   rabbitmq_data:
