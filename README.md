@@ -42,17 +42,17 @@ $ https://github.com/Luiz-Cruz/customer-notifications.git
 $ docker-compose up --build
 ```
 
-3. Get the collection
+# HTTP Collection
 
    https://documenter.getpostman.com/view/15447501/2s9Ykq6fVX
 
 
-4. RabbitMQ:
+# RabbitMQ:
 ```bash
 localhost:15672
 ```
 
-5. MongoDB:
+#  MongoDB:
 ```bash
 localhost:8081
 ```
@@ -61,3 +61,13 @@ localhost:8081
 
 - base_users: admin
 - base_passwords: admin
+
+# Tests 
+
+Be sure to be in the main directory, then run:
+
+``` bash
+$ coverage run -m pytest
+$ coverage report -m
+```
+```
