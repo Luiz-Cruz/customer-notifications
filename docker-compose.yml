@@ -14,8 +14,8 @@ services:
     environment:
       - CELERY_BROKER_URL=${CELERY_BROKER_URL} 
       - MONGO_URI=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/
-      - MONGO_DB=cronos
-      - TIMEZONE=America/Sao_Paulo
+      - MONGO_DB=${MONGO_DB}
+      - TIMEZONE=${TIMEZONE}
   nginx:
     image: nginx:1.25-alpine
     ports:
@@ -62,6 +62,17 @@ services:
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
 
+  celery-worker:
+    build:
+      context: .
+    restart: always
+    environment:
+      - CELERY_BROKER_URL=amqp://admin:admin@rabbitmq:5672
+      - MONGO_DB={MONGO_DB}
+    command: celery -A app.adapters.queue.celery_consumer worker --loglevel=info 
+    depends_on:
+      - rabbitmq
+ 
 volumes:
   mongodb_data: 
   rabbitmq_data:
