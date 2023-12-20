@@ -16,9 +16,10 @@ This Notification projetct provides a flexible service for sending notifications
 
 - Test Coverage: Comprehensive test suite ensuring reliability and stability.
 
-# Project scope
+# Project 
 
-![image](https://github.com/Luiz-Cruz/customer-notifications/assets/54514011/ba808749-6dd8-466f-ac68-46f01f2d12b1)
+<img width="856" alt="image" src="https://github.com/Luiz-Cruz/customer-notifications/assets/54514011/9975e7a7-7432-42e5-8f85-6a74e55028f1">
+
 
 
 
