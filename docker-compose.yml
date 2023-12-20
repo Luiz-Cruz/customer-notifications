@@ -11,7 +11,11 @@ services:
       - mongodb
       - rabbitmq
       - nginx
-
+    environment:
+      - CELERY_BROKER_URL=${CELERY_BROKER_URL} 
+      - MONGO_URI=mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/
+      - MONGO_DB=cronos
+      - TIMEZONE=America/Sao_Paulo
   nginx:
     image: nginx:1.25-alpine
     ports:
@@ -24,10 +28,8 @@ services:
     ports:
       - "27017:27017"
     environment:
-      - MONGO_INITDB_DATABASE=cronos
       - MONGO_INITDB_ROOT_USERNAME=${MONGO_INITDB_ROOT_USERNAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INITDB_ROOT_PASSWORD}
-      - MONGO_URI="mongodb://${MONGO_INITDB_ROOT_USERNAME}:${MONGO_INITDB_ROOT_PASSWORD}@mongodb:27017/"
     volumes:
       - ./db/seed.js:/docker-entrypoint-initdb.d/seed.js:ro
       - mongodb_data:/data/db
@@ -47,7 +49,7 @@ services:
       - mongodb
 
   rabbitmq:
-    image: rabbitmq:3.10-alpine
+    image: rabbitmq:management
     container_name: rabbitmq
     restart: always
     environment:
@@ -55,10 +57,11 @@ services:
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
       - RABBITMQ_DEFAULT_VHOST=/
     ports:
+      - 5672:5672
       - 15672:15672
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
-  
+
 volumes:
   mongodb_data: 
   rabbitmq_data:
