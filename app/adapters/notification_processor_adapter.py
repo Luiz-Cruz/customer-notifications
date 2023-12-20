@@ -27,6 +27,10 @@ class NotificationProcessor:
             logger.warning("Invalid notification type")
             raise ApiException("Invalid notification type", HttpStatusCode.BAD_REQUEST)
         
+        if not notification.schedule_date:
+            logger.info("Sending notification immediately")
+            self.send_to_queue(notification.to_dict)
+            
         if notification.schedule_date and notification.is_valid_schedule_date:
             logger.info(f"Scheduling notification for {notification.schedule_date}")
             self.send_to_queue(notification.to_dict)
@@ -35,6 +39,7 @@ class NotificationProcessor:
             logger.warning("Invalid schedule date")
             raise ApiException("Invalid schedule date", HttpStatusCode.BAD_REQUEST)
         
+       
         
     def user_is_opt_out(self, user_id: str) -> bool:
         user = self.user_repository.find_by_id(user_id)
