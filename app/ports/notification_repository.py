@@ -1,6 +1,7 @@
 from abc import ABC, abstractmethod
 
-class MessageBroker(ABC):
+class NotificationRepository(ABC):
     @abstractmethod
-    def execute(self, message):
+    def save(self, message):
         raise NotImplementedError
+    

@@ -8,7 +8,7 @@ def respond_api_error(error_details: str, status_code: int) -> Response:
     Respond with api error
 
     Args:
-        key_error (str): Key error
+        error_details (str): Error details
         status_code (int): Status code
 
     Returns:
