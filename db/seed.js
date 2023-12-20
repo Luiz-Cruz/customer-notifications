@@ -4,6 +4,16 @@ db.createCollection('users');
 db.createCollection('notifications');
 db.users.createIndex({ email: 1 }, { unique: true });
 
+db.notifications.insertMany([
+    {
+        "user_id": "e2b3zzz8-4d453-1281-a64a-8f20b9dcd44a",
+        "message": "Promotion",
+    },
+    {
+        "user_id": "99e3zzz8-4zza6-1284-a65a-8f20b9dcdzbca",
+        "message": "Lorem Ipsum",
+    }
+]);
 
 db.users.insertMany([
     {
