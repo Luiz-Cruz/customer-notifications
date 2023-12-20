@@ -13,9 +13,6 @@ from app.presentation.schemas.notifications import NotificationSchema
 from app.presentation.validation.notification_validator import validate_notifications_request
 
 
-mongodb = UserRepositoryMongoDBAdapter()
-celery = CeleryMessageBroker()
-notification_processor = NotificationProcessor(mongodb, celery)
 notifications_router = Blueprint("notifications_router", __name__)
 
 
@@ -24,6 +21,9 @@ notifications_router = Blueprint("notifications_router", __name__)
 def create_notification(body: NotificationBody) -> Response:
     """Creates a new customer notification"""
     logger.info(f"Received notification request: {body}")
+    mongodb = UserRepositoryMongoDBAdapter()
+    celery = CeleryMessageBroker()
+    notification_processor = NotificationProcessor(mongodb, celery)
     notification_processor.execute(body)
     return jsonify({
         "message": "Notification received successfully", 

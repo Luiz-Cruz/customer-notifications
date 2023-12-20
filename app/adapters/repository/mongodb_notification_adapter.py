@@ -14,7 +14,7 @@ class MongoDBNotificationAdapter(NotificationRepository):
         Initialize the MongoDBNotificationAdapter.
         """
         self.client = MongoClient(os.environ.get('MONGO_URI'))
-        self.db = self.client[os.environ.get('MONGO_DB')] 
+        self.db = self.client[os.environ.get('MONGO_DB', 'customer-notifications')] 
 
     def save(self, notification: Notification) -> dict:
         """
