@@ -16,6 +16,6 @@ def validate_notifications_request(schema):
                 validated_data = NotificationBody(**data)
                 return func(validated_data, *args, **kwargs)
             except ValidationError as err:
-                raise BadRequest(f"Invalid request body, missing: {err.messages}")            
+                raise BadRequest(f"Invalid request body: {err.messages}")            
         return wrapper
     return decorator
