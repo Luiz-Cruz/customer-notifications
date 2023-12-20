@@ -1,6 +1,6 @@
 from flask import Flask
 
-from app.presentation.controllers.notifications import notifications_router
+from app.presentation.controllers.notifications_ctr import notifications_router
 from app.presentation.controllers.ping_ctr import ping_router
 
 

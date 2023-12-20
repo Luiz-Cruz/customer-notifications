@@ -15,3 +15,4 @@ class NotificationBody:
     message: str
     notification_type: str
     schedule_date: str = None
+    

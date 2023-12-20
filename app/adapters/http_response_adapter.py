@@ -2,21 +2,25 @@ import json
 
 from flask import Response
 
-from domain.http.status_code import HttpStatusCode
 
-
-def respond_created_successfully() -> Response:
+def respond_api_error(error_details: str, status_code: int) -> Response:
     """
-    Respond with created successfully
+    Respond with api error
+
+    Args:
+        key_error (str): Key error
+        status_code (int): Status code
 
     Returns:
         Response: Flask response
     """
     return Response(
-        json.dumps({
-            "status": HttpStatusCode.CREATED,
-            "message": "Notifications received successfully.",
-        }),
+        json.dumps(
+            {
+                "message": error_details,
+                "status": status_code,
+            }
+        ),
         mimetype='application/json',
-        status=HttpStatusCode.CREATED
+        status=status_code
     )
