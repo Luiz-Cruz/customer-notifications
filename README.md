@@ -29,7 +29,7 @@ This Notification projetct provides a flexible service for sending notifications
 
 # Installation
 
-1. Clone the repository:
+1. Clone the repository, the main branch actualy is: release/v1
 
 ```bash
 $ https://github.com/Luiz-Cruz/customer-notifications.git
@@ -69,5 +69,4 @@ Be sure to be in the main directory, then run:
 ``` bash
 $ coverage run -m pytest
 $ coverage report -m
-```
 ```
