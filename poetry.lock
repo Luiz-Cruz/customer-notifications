@@ -488,7 +488,7 @@ dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.11"
-content-hash = "23eee502fbfc18c75e1bb711cb8b9ac6163f7a7931e0cb2e063c191a3ab9a30f"
+content-hash = "0495254e2313f047b4a068e6dc97abadb48287aa816619ab7762d06d4f7bd55b"
 
 [metadata.files]
 amqp = []
